@@ -1,0 +1,4 @@
+name: test-plugin
+version: '1.0-SNAPSHOT'
+main: com.silvager.testPlugin.VeganHorror
+api-version: '1.21'
