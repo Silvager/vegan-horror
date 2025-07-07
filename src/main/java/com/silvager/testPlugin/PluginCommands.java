@@ -28,7 +28,6 @@ public class PluginCommands {
         LiteralArgumentBuilder<CommandSourceStack> triggerNode = Commands.literal("trigger");
         // Automatically create a new command branch off of "trigger" for every function in triggerFxnsMap
         for (Map.Entry<String, Consumer<Player>> entry : triggerFxnsMap.entrySet()) {
-            System.out.println("Running "+entry.getKey());
             triggerNode.then(Commands.literal(entry.getKey()).then(Commands.argument("player", ArgumentTypes.player())
                     .executes(ctx -> {
                         final PlayerSelectorArgumentResolver plrResolver = ctx.getArgument("player", PlayerSelectorArgumentResolver.class);

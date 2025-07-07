@@ -9,6 +9,7 @@ import org.bukkit.util.noise.NoiseGenerator;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
+import java.util.Vector;
 
 public class CustomGen extends ChunkGenerator {
 
@@ -21,7 +22,7 @@ public class CustomGen extends ChunkGenerator {
                 } else {
                     chunkData.setBlock(x, 0, z, Material.BONE_BLOCK);
                 }
-                if (!isPosInsideCircle((chunkX*16) + x, (chunkZ*16) + z)) {
+                if (!isPosInsideCircle(chunkX, x, chunkZ, z)){
                     for (int y=1; y<=20; y++) {
                         chunkData.setBlock(x, y, z, Material.BARRIER);
                     }
@@ -30,9 +31,11 @@ public class CustomGen extends ChunkGenerator {
             }
         }
     }
-    private boolean isPosInsideCircle(int realX, int realZ) {
-        int distance = (int) Math.sqrt(realX^2 + realZ^2);
-        return distance < 10;
+    private boolean isPosInsideCircle(int chunkX, int x, int chunkZ, int z) {
+        double realX = (chunkX*16) + x;
+        double realZ  =(chunkZ*16) + z;
+        double distanceSquared =(realX*realX) + (realZ * realZ);
+        return distanceSquared < 100.0;
     }
 
 }
